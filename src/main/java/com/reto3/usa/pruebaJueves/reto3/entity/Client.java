@@ -18,23 +18,24 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "client")
-public class Client implements Serializable {
-
+@Table(name="client")
+public class Client implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idClient;
     private String email;
     private String password;
     private String name;
     private int age;
     
     
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "client")     
-    @JsonIgnoreProperties("client") private List<Message> messages;         
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy ="client")
+    @JsonIgnoreProperties("client")
+    private List<Message> messages;
     
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy="client")     
-    @JsonIgnoreProperties("client")     
-    private List<Reservation> reservations; 
+    
+    @OneToMany(cascade ={CascadeType.PERSIST}, mappedBy="client")
+    @JsonIgnoreProperties("client")
+    private List<Reservation> reservations;
 }
 

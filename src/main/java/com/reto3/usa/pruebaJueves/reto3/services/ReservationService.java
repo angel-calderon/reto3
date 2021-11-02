@@ -11,12 +11,27 @@ import org.springframework.stereotype.Service;
 public class ReservationService {
     @Autowired
     private ReservationRepository repositorio;
-
-    public Reservation ReservationSave(Reservation reservation) {
-        return repositorio.save(reservation);
+    
+    //Create
+    public Reservation saveReservation(Reservation reservation){
+       return repositorio.save(reservation);
+    }
+       
+    //Read
+    public List<Reservation> getReservationAll(){
+        return repositorio.findAll();
     }
     
-    public List<Reservation> ReservationGetAll(){
-        return repositorio.findAll();
-}
+    //Update
+    public Reservation updatReservation(Reservation reservation){
+        Reservation existeReservation=repositorio.findById(reservation.getIdReservation()).orElse(null);
+        existeReservation.setStartDate(reservation.getStartDate());
+        existeReservation.setDevolutionDate(reservation.getDevolutionDate());
+        return repositorio.save(existeReservation);
+    }
+    //Delete
+    public String deleteReservation(int idReservation){
+        repositorio.deleteById(idReservation);
+        return "Registro con id "+idReservation+" ha sido eliminado";
+    }
 }

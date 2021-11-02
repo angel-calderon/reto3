@@ -17,21 +17,22 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "message")
-public class Message implements Serializable {
-
+@Table(name="message")
+public class Message implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idMessage;
     private String messageText;
-   
-    @ManyToOne
-    @JoinColumn(name = "idGame")
-    @JsonIgnoreProperties({"messages", "reservations"})
-    private Game game;    
     
-    @ManyToOne    
-    @JoinColumn(name = "idClient")    
-    @JsonIgnoreProperties({"messages","reservations"})    
-    private Client client;    
+    @ManyToOne
+    @JoinColumn(name="game_id")
+    @JsonIgnoreProperties({"reservations","messages"}) 
+    private Game game;
+    
+    
+    
+    @ManyToOne
+    @JoinColumn(name="client_id")
+    @JsonIgnoreProperties({"messages","reservations"})
+    private Client client;
 }

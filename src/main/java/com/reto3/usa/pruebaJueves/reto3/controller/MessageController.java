@@ -12,22 +12,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
- @RestController
- @RequestMapping("/api/Message")
+@RestController
+@RequestMapping("/api/Message")
 public class MessageController {
-
-        @Autowired
-        private MessageService servicio;
-
-        @GetMapping("/all")
-        public List<Message> messageFindAll() {
-            return servicio.MessageGetAll();
-        }
-
-        @PostMapping("/save")
-        public ResponseEntity messageAdd(@RequestBody Message message) {
-            servicio.MessageSave(message);
-            return ResponseEntity.status(201).build();
-        }
+    @Autowired
+    private MessageService servicio;
     
- }
+    @PostMapping("/save")
+    public ResponseEntity addMensaje(@RequestBody Message mensaje){
+        servicio.saveMessage(mensaje);
+        return ResponseEntity.status(201).build();      
+    }
+    
+   @GetMapping("/all")
+   public List<Message> getAllMensajes(){
+       return servicio.getMessageAll();
+   }
+}

@@ -20,22 +20,26 @@ public class GameService {
     }
     
     //read
-    public List<Game> GamesGetrAll(){
+    public List<Game> GamesGetAll(){
         return repositorio.findAll();
     }
     //Update 
-    /**public Game updateGame(Game juego){
+//Update
+    public Game updateGames(Game juego){
         Game existeJuego=repositorio.findById(juego.getId()).orElse(null);
-        existeJuego.setDeveloper(juego.getDeveloper());
-        existeJuego.setMinage(juego.getMinage());
-        existeJuego.setCategory_id(juego.getCategory_id());
         existeJuego.setName(juego.getName());
+        existeJuego.setDeveloper(juego.getDeveloper());
+        existeJuego.setYear(juego.getYear());
+        existeJuego.setDescription(juego.getDescription());
         return repositorio.save(existeJuego);
     }
     //Delete
-    public String deleteGame(Game juego){
-        repositorio.deleteById(juego.getId());
-        return "registro con id "+juego.getId()+" ha sido eliminado";
+    public String deleteGames(int game_id){
+        repositorio.deleteById(game_id);
+        return "Registro con id "+game_id+" ha sido eliminado";
+        
+    }
+
     
-    * */
+    
 }

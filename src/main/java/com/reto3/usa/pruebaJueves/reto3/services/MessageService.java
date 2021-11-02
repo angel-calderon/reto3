@@ -11,16 +11,26 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MessageService {
-
-   @Autowired
+    @Autowired
     private MessageRepository repositorio;
-
-    public Message MessageSave(Message message) {
-        return repositorio.save(message);
+    //Create
+    public Message saveMessage(Message mensaje){
+        return repositorio.save(mensaje);
     }
-    
-    public List<Message> MessageGetAll(){
-          return repositorio.findAll();
+    //Read
+    public List<Message> getMessageAll(){
+        return repositorio.findAll();
     }
-
- }
+    //Update
+    public Message updateMessage(Message mensaje){
+        Message existeMensaje=repositorio.findById(mensaje.getIdMessage()).orElse(null);
+        existeMensaje.setMessageText(mensaje.getMessageText());
+        return repositorio.save(existeMensaje);
+    }
+    //Delete
+    public String deleteGame(int id){
+        repositorio.deleteById(id);
+        return "Registro con id "+id+" ha sido eliminado";
+        
+    }
+}

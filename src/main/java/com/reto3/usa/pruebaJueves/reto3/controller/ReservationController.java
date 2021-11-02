@@ -13,21 +13,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
  @RestController
- @RequestMapping("/api/Reservation")
+@RequestMapping("/api/Reservation")
 public class ReservationController {
-
-        @Autowired
-        private ReservationService servicio;
-
-        @GetMapping("/all")
-        public List<Reservation> reservationFindAll() {
-            return servicio.ReservationGetAll();
-        }
-
-        @PostMapping("/save")
-        public ResponseEntity reservationAdd(@RequestBody Reservation reservation) {
-            servicio.ReservationSave(reservation);
-            return ResponseEntity.status(201).build();
-        }
+    @Autowired
+    private ReservationService servicio;
     
- }
+    @PostMapping("/save")
+    public ResponseEntity addReservacion(@RequestBody Reservation reservacion){
+        servicio.saveReservation(reservacion);
+        return ResponseEntity.status(201).build();           
+    }
+    
+    @GetMapping("/all")
+    public List<Reservation> getAllResrvations(){
+        return servicio.getReservationAll();
+    }
+}

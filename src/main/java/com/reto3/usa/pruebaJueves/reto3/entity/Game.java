@@ -20,9 +20,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "game")
-public class Game implements Serializable {
-
+@Table(name="game")
+public class Game implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -30,19 +29,19 @@ public class Game implements Serializable {
     private String developer;
     private int year;
     private String description;
-  
     
     @ManyToOne
-    @JoinColumn(name = "category_id")
-    @JsonIgnoreProperties("game")
+    @JoinColumn(name="category_id")
+    @JsonIgnoreProperties({"game","games"})
     private Category category;
     
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "game")
+    
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy="game")
     @JsonIgnoreProperties({"game","client"})
     private List<Message> messages;
     
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "game")
-    @JsonIgnoreProperties({"game","message"})
-    private List<Reservation> reservations;
     
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy="game")
+    @JsonIgnoreProperties("game")
+    private List<Reservation> reservations;
 }

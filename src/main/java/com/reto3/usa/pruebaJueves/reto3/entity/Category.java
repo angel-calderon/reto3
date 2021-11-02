@@ -18,19 +18,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "category")
-public class Category implements Serializable {
-
+@Table(name="category")
+public class Category implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String description;
-     
-
-    //RELACIONES
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "category")
-    @JsonIgnoreProperties({"category","message"})
+    
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy="category")
+    @JsonIgnoreProperties("category")
     private List<Game> games;
-
 }
+
