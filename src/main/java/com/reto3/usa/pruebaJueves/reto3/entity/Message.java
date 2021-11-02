@@ -25,15 +25,11 @@ public class Message implements Serializable {
     private int id;
     private String messageText;
    
-    
- 
-
     @ManyToOne
     @JoinColumn(name = "idGame")
     @JsonIgnoreProperties({"messages", "reservations"})
     private Game game;    
     
-   
     @ManyToOne    
     @JoinColumn(name = "idClient")    
     @JsonIgnoreProperties({"messages","reservations"})    

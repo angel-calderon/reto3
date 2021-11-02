@@ -30,7 +30,7 @@ public class Category implements Serializable {
 
     //RELACIONES
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "category")
-    @JsonIgnoreProperties("category")
+    @JsonIgnoreProperties({"category","message"})
     private List<Game> games;
 
 }

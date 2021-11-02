@@ -2,6 +2,7 @@ package com.reto3.usa.pruebaJueves.reto3.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Calendar;
+import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,8 +26,9 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private Calendar startDate;
-    private Calendar devolutionDate;
+    private Date startDate;
+    private Date devolutionDate;
+    //private Calendar devolutionDate;
     private String status = "created";
     private String score=null;
     
@@ -40,9 +42,6 @@ public class Reservation {
     @JsonIgnoreProperties({"reservations","messages"})    
     private Client client;
      
-    /*@OneToOne(cascade = {CascadeType.REMOVE},mappedBy="reservation")     
-    @JsonIgnoreProperties("reservation")   
-    private Score score=null;*/
-
+    
 
     }
